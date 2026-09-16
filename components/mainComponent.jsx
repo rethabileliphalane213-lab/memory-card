@@ -43,7 +43,7 @@ export default Main
 
 function getRandomCards(dataArray){
    
-    let index=0
+    let index=1
     let pickedCards=[]
     while(index <=6){
          const randomCard=Math.floor(Math.random()*dataArray.length)
