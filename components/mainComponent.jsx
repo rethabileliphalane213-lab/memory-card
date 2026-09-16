@@ -4,13 +4,14 @@ import CardCompnent from "./cardComponent";
 
 function Main(){
     const [cards,setCards]=useState([])
+    const [cardsInfo,setCardsInfo]=useState([])
     useEffect(()=>{
       async function getData() {
         
            try{
-const data=await fetch("https://pokeapi.co/api/v2/pokemon?limit=20")
+const data=await fetch("https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0")
 const dataObj=await data.json()
-setCards(getRandomCards(dataObj))
+setCards(getRandomCards(dataObj.results))
      }catch(e){
 console.log(e)
      }   
@@ -18,9 +19,22 @@ console.log(e)
       getData()
     },[])
 
+    useEffect(()=>{
+        async function getCardsSprites(){
+            const newCardsInfo=[]
+            for(const card of cards){
+                const cardData=await fetch(card.url)
+                const cardObj=await cardData.json()
+                newCardsInfo.push(cardObj)
+            }
+            setCards(newCardsInfo)
+        }
+        getCardsSprites()
+    },[cards])
+
     return(
         <div>
-            <CardCompnent cards={cards} />
+            <CardCompnent cards={cardsInfo} />
         </div>
     )
 }

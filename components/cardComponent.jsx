@@ -3,10 +3,14 @@ function CardCompnent({cards}){
     return(
         <div>
             {cards.map((card,index)=>{
-                <div class="container" id={card.id}>
-                    <img src={card.url} />
+                 return(
+                      <div className="container" id={card.id}>
+                   
+                    <img src={card.sprites.font} />
                     <p>Card.name</p>
-                </div>
+                </div>   
+                    )
+               
             })}
                 
             
