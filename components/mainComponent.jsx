@@ -27,7 +27,7 @@ console.log(e)
                 const cardObj=await cardData.json()
                 newCardsInfo.push(cardObj)
             }
-            setCards(newCardsInfo)
+            setCardsInfo(newCardsInfo)
         }
         getCardsSprites()
     },[cards])
@@ -38,6 +38,8 @@ console.log(e)
         </div>
     )
 }
+
+export default Main
 
 function getRandomCards(dataArray){
    
