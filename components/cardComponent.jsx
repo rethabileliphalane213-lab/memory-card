@@ -1,7 +1,10 @@
-function CardCompnent({ cards, clickHandler }) {
+function CardCompnent({ cards, clickHandler, score, highScore }) {
     return (
-        <div className="card-container">
-
+        <div>
+ <h2>Score: {score}</h2>
+            <h2>highScore {highScore}</h2>
+    <div className="card-container">
+           
             {cards.map((card) => {
                 return (
                     <div
@@ -20,6 +23,8 @@ function CardCompnent({ cards, clickHandler }) {
             })}
 
         </div>
+        </div>
+    
     );
 }
 
