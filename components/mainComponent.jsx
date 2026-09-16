@@ -5,6 +5,7 @@ import CardCompnent from "./cardComponent";
 function Main(){
     const [cards,setCards]=useState([])
     const [cardsInfo,setCardsInfo]=useState([])
+    const [cardClicked,setCardClicked]=useState([])
     useEffect(()=>{
       async function getData() {
         
@@ -17,6 +18,8 @@ console.log(e)
      }   
       }
       getData()
+
+     
     },[])
 
     useEffect(()=>{
@@ -30,11 +33,28 @@ console.log(e)
             setCardsInfo(newCardsInfo)
         }
         getCardsSprites()
+      
     },[cards])
+
+
+ function imageClick(cardId) {
+    if (cardClicked.includes(cardId)) {
+        alert("You clicked the same card twice. Game Over");
+
+        setCardClicked([]);
+        return;
+    }
+
+    setCardClicked([...cardClicked, cardId]);
+
+    setCardsInfo(prevCards => {
+        return [...prevCards].sort(() => Math.random() - 0.5);
+    });
+}
 
     return(
         <div>
-            <CardCompnent cards={cardsInfo} />
+            <CardCompnent cards={cardsInfo} clickHandler={imageClick} />
         </div>
     )
 }
@@ -52,3 +72,5 @@ function getRandomCards(dataArray){
     }
     return pickedCards
 }
+
+
