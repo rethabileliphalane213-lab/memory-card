@@ -1,8 +1,8 @@
 function CardCompnent({cards}){
 
     return(
-        <div>
-            <h1>Hello</h1>
+        <div className="card-container">
+         
             {cards.map((card,index)=>{
                  return(
                       <div className="container" id={card.id}>
