@@ -8,6 +8,7 @@ function Main() {
     const [score, setScore] = useState(0);
     const [highScore,setHighScore]=useState(0)
     const [display,setDisplay]=useState(false )
+    const [background,setBackground]=useState([255,255,255])
 
     async function getData() {
         try {
@@ -49,6 +50,7 @@ function Main() {
             if(score >=highScore){
                 setHighScore(score)
                 setScore(0)
+                setBackground([255,255,255])
             }
            
             setDisplay(true)
@@ -60,6 +62,13 @@ function Main() {
  setDisplay(false)
         setScore(score + 1);
         getData();
+       setBackground((array) => {
+    return [
+        array[0] - 10,
+        array[1] - 10,
+        array[2] - 10
+    ];
+});
     }
 if(display){
       return (
@@ -70,6 +79,7 @@ if(display){
                 score={score}
                 highScore={highScore}
                 msg={"GAME OVER"}
+                back={background}
             />
         </div>
       )
@@ -83,6 +93,7 @@ else{
                 clickHandler={imageClick}
                 score={score}
                 highScore={highScore}
+                back={background}
                 
             />
         </div>

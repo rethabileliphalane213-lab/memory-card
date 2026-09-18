@@ -1,6 +1,6 @@
-function CardCompnent({ cards, clickHandler, score, highScore, msg="" }) {
+function CardCompnent({ cards, clickHandler, score, highScore, msg="" ,back}) {
     return (
-        <div>
+        <div style={{backgroundColor: `rgb(${back[0]}, ${back[1]}, ${back[2]})`}}>
  <h2>Score: {score}</h2>
             <h2>highScore {highScore}</h2>
     <div className="card-container">
@@ -17,7 +17,7 @@ function CardCompnent({ cards, clickHandler, score, highScore, msg="" }) {
 
                         <p></p>
 
-                        <button>{card.name}</button>
+                        <h4>{card.name}</h4>
                     </div>
                 );
             })}
