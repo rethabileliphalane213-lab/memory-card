@@ -9,6 +9,7 @@ function Main() {
     const [highScore,setHighScore]=useState(0)
     const [display,setDisplay]=useState(false )
     const [background,setBackground]=useState([255,255,255])
+    const [green,setGreen]=useState(0)
 
     async function getData() {
         try {
@@ -50,11 +51,13 @@ function Main() {
             if(score >=highScore){
                 setHighScore(score)
                 setScore(0)
-                setBackground([255,255,255])
+               
             }
            
             setDisplay(true)
             setCardClicked([]);
+             setBackground([255,255,255])
+             setGreen(0)
             return;
         }
 
@@ -62,13 +65,12 @@ function Main() {
  setDisplay(false)
         setScore(score + 1);
         getData();
-       setBackground((array) => {
-    return [
-        array[0] - 10,
-        array[1] - 10,
-        array[2] - 10
-    ];
-});
+       setBackground((array) => [
+    Math.max(array[0] - 10, 0),
+    Math.max(array[1] - 10, 0),
+    Math.max(array[2] - 10, 0)
+]);
+setGreen((value) => Math.min(value + 10, 255));
     }
 if(display){
       return (
@@ -80,6 +82,7 @@ if(display){
                 highScore={highScore}
                 msg={"GAME OVER"}
                 back={background}
+                green={green}
             />
         </div>
       )
@@ -94,6 +97,7 @@ else{
                 score={score}
                 highScore={highScore}
                 back={background}
+                green={green}
                 
             />
         </div>

@@ -1,9 +1,12 @@
-function CardCompnent({ cards, clickHandler, score, highScore, msg="" ,back}) {
+function CardCompnent({ cards, clickHandler, score, highScore, msg="" ,back,green}) {
     return (
-        <div style={{backgroundColor: `rgb(${back[0]}, ${back[1]}, ${back[2]})`}}>
+       <div 
+    className="game-container"
+    style={{backgroundColor: `rgb(${back[0]}, ${back[1]}, ${back[2]})`}}
+>
  <h2>Score: {score}</h2>
             <h2>highScore {highScore}</h2>
-    <div className="card-container">
+    <div className="card-container"  style={{borderColor:`rgb(0,${green},0)`}}>
            
             {cards.map((card) => {
                 return (
@@ -13,7 +16,7 @@ function CardCompnent({ cards, clickHandler, score, highScore, msg="" ,back}) {
                         onClick={() => clickHandler(card.id)}
                         key={card.id}
                     >
-                        <img src={card.sprites.front_default} />
+                        <img src={card.sprites.front_default}/>
 
                         <p></p>
 
