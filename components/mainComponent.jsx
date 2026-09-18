@@ -7,6 +7,7 @@ function Main() {
     const [cardClicked, setCardClicked] = useState([]);
     const [score, setScore] = useState(0);
     const [highScore,setHighScore]=useState(0)
+    const [display,setDisplay]=useState(false )
 
     async function getData() {
         try {
@@ -23,17 +24,17 @@ function Main() {
     }
 
     async function getCardsSprites() {
-        const newCardsInfo = [];
+    const newCardsInfo = [];
 
-        for (const card of cards) {
-            const cardData = await fetch(card.url);
-            const cardObj = await cardData.json();
+    for (const card of cards) {
+        const cardData = await fetch(card.url);
+        const cardObj = await cardData.json();
 
-            newCardsInfo.push(cardObj);
-        }
-
-        setCardsInfo(newCardsInfo);
+        newCardsInfo.push(cardObj);
     }
+
+    setCardsInfo(newCardsInfo);
+}
 
     useEffect(() => {
         getData();
@@ -49,45 +50,60 @@ function Main() {
                 setHighScore(score)
                 setScore(0)
             }
-            alert("You clicked the same card twice. Game Over");
-
+           
+            setDisplay(true)
             setCardClicked([]);
             return;
         }
 
         setCardClicked([...cardClicked, cardId]);
-
+ setDisplay(false)
         setScore(score + 1);
         getData();
     }
-
-    return (
+if(display){
+      return (
         <div>
             <CardCompnent
                 cards={cardsInfo}
                 clickHandler={imageClick}
                 score={score}
                 highScore={highScore}
+                msg={"GAME OVER"}
             />
         </div>
-    );
+      )
+
+}
+else{
+      return (
+        <div>
+            <CardCompnent
+                cards={cardsInfo}
+                clickHandler={imageClick}
+                score={score}
+                highScore={highScore}
+                
+            />
+        </div>
+      )
+}
+  
+    
 }
 
 export default Main;
 
-
 function getRandomCards(dataArray) {
-    let index = 1;
     let pickedCards = [];
 
-    while (index <= 6) {
-        const randomCard = Math.floor(
-            Math.random() * dataArray.length
-        );
+    while (pickedCards.length < 6) {
+        const randomCard =
+            dataArray[Math.floor(Math.random() * dataArray.length)];
 
-        pickedCards.push(dataArray[randomCard]);
-
-        index++;
+        if (!pickedCards.includes(randomCard)) {
+            pickedCards.push(randomCard);
+        }
     }
 
     return pickedCards;

@@ -1,4 +1,4 @@
-function CardCompnent({ cards, clickHandler, score, highScore }) {
+function CardCompnent({ cards, clickHandler, score, highScore, msg="" }) {
     return (
         <div>
  <h2>Score: {score}</h2>
@@ -23,6 +23,8 @@ function CardCompnent({ cards, clickHandler, score, highScore }) {
             })}
 
         </div>
+
+        <h1>{msg}</h1>
         </div>
     
     );
