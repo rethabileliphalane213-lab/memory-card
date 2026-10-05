@@ -6,11 +6,15 @@ function CardCompnent({ cards, clickHandler, score, highScore, msg="" ,back,gree
 >
  <h2>Score: {score}</h2>
             <h2>highScore {highScore}</h2>
-    <div className="card-container"  style={{borderColor:`rgb(0,${green},0)`}}>
+    <div className="card-container" >
            
             {cards.map((card) => {
                 return (
                     <div
+                    style={{
+    borderColor:`rgb(0,${green},0)`,
+    boxShadow:`0 0 ${green / 5}px rgb(0,${green},0)`
+}}
                         className="container"
                         id={card.id}
                         onClick={() => clickHandler(card.id)}

@@ -14,7 +14,7 @@ function Main() {
     async function getData() {
         try {
             const data = await fetch(
-                "https://pokeapi.co/api/v2/pokemon?limit=100&offset=0"
+                "https://pokeapi.co/api/v2/pokemon?limit=30&offset=0"
             );
 
             const dataObj = await data.json();
