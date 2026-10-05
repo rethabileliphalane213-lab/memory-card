@@ -6,6 +6,7 @@ function CardCompnent({ cards, clickHandler, score, highScore, msg="" ,back,gree
 >
  <h2>Score: {score}</h2>
             <h2>highScore {highScore}</h2>
+            <h4>Do Not Pick The Same Card Twice!</h4>
     <div className="card-container" >
            
             {cards.map((card) => {
